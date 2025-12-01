@@ -1,0 +1,5 @@
+host.springboot.framework.autoconfigure.KrismileAutoConfiguration
+host.springboot.framework.autoconfigure.web.KsWebAutoConfiguration
+host.springboot.framework.autoconfigure.web.KsRequestLogAutoConfiguration
+host.springboot.framework.autoconfigure.web.KsRequestBodyWrapperAutoConfiguration
+host.springboot.framework.autoconfigure.web.KsXssFilterAutoConfiguration
