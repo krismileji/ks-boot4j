@@ -6,7 +6,7 @@ import org.jspecify.annotations.Nullable;
 /**
  * 枚举非法论证异常
  *
- * <p>主要用于自定义枚举转换时发生的异常
+ * <p>主要用于自定义枚举转换时发生的异常</p>
  *
  * @author JiYinchuan
  * @since 0.1.0

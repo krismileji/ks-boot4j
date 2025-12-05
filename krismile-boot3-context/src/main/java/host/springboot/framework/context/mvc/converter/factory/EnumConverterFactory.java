@@ -18,17 +18,17 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 枚举转换工厂类
  *
- * <p>该类为处理请求参数中的枚举对应值和枚举对象进行相互转换而存在
+ * <p>该类为处理请求参数中的枚举对应值和枚举对象进行相互转换而存在</p>
  * <hr>
  * <p>当请求参数为枚举时, 且枚举中存在标注了 {@link EnumConvertValue @EnumConvertValue} 注解的静态方法或者类实现了 {@link BaseEnum} 的枚举
- * (两者同时存在时标注了 {@code @EnumConvertValue} 注解的静态方法优先级为最高), 可以自动将该对象属性名称与请求参数进行匹配,
+ * (两者同时存在时标注了 {@code @EnumConvertValue} 注解的静态方法优先级为最高), 可以自动将该对象属性名称与请求参数进行匹配,</p>
  * <p>Warning: 底层通过 {@link ConverterFactory} 进行实现时必须指定请求参数数据类型与转换的数据类型,
  * 因此当请求参数为枚举时, 请求参数的类型必须为 {@link String},
- * 转换的枚举必须在方法上标注 {@code @EnumConvertValue} 注解或者实现 {@link BaseEnum} 接口
- * <p>{@code @EnumConvertValue} 注解使用方法请参见该注解类文档
- * <p>推荐自定义枚举类实现 {@link BaseEnum} 接口而不是使用 {@code @EnumConvertValue} 注解
+ * 转换的枚举必须在方法上标注 {@code @EnumConvertValue} 注解或者实现 {@link BaseEnum} 接口</p>
+ * <p>{@code @EnumConvertValue} 注解使用方法请参见该注解类文档</p>
+ * <p>推荐自定义枚举类实现 {@link BaseEnum} 接口而不是使用 {@code @EnumConvertValue} 注解</p>
  * <hr>
- * <p>当请求参数为请求体时需要在枚举类中加上下列代码实现, 代码示例:
+ * <p>当请求参数为请求体时需要在枚举类中加上下列代码实现, 代码示例:</p>
  * <pre>{@code
  *     &#064;JsonCreator(mode = JsonCreator.Mode.DELEGATING)
  *     public static [枚举类] parse(String value) {

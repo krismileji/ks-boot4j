@@ -130,8 +130,8 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
 
     /**
      * 参数为空全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
-     * <p>捕获来自 {@link org.springframework.web.bind.annotation.RequestParam}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
+     * <p>捕获来自 {@link org.springframework.web.bind.annotation.RequestParam}</p>
      *
      * @param e       {@link MissingServletRequestParameterException}
      * @param request {@link HttpServletRequest}
@@ -170,8 +170,8 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
 
     /**
      * 验证异常全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
-     * <p>捕获来自 {@link jakarta.validation.constraints}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
+     * <p>捕获来自 {@link jakarta.validation.constraints}</p>
      *
      * @param e       {@link ValidationException}
      * @param request {@link HttpServletRequest}
@@ -202,14 +202,14 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
 
     /**
      * 请求体异常全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b>
-     * <p>Also throw to {@link InvalidFormatException}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b></p>
+     * <p>Also throw to {@link InvalidFormatException}</p>
      *
      * @param e       {@link HttpMessageNotReadableException}
      * @param request {@link HttpServletRequest}
      * @return 结果响应
      * @see com.fasterxml.jackson.databind.DeserializationContext#weirdStringException(String, Class, String)
-     * <p>Enum deserialize failed exception is unsolved
+     * <p>Enum deserialize failed exception is unsolved</p>
      * @since 0.1.0
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -227,7 +227,7 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
     /**
      * 绑定异常全局捕获
      *
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
      *
      * @param e       {@link BindException}
      * @param request {@link HttpServletRequest}
@@ -248,8 +248,8 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
 
     /**
      * 请求体验证全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b>
-     * <p>捕获来自 {@link jakarta.validation.constraints}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b></p>
+     * <p>捕获来自 {@link jakarta.validation.constraints}</p>
      *
      * @param e       {@link MethodArgumentNotValidException}
      * @param request {@link HttpServletRequest}

@@ -18,7 +18,7 @@ import java.util.Objects;
 /**
  * 请求工具类
  *
- * <p>该类主要用于处理请求相关数据
+ * <p>该类主要用于处理请求相关数据</p>
  * <ul>
  *     <li><b>parseInfo</b> - 解析请求相关信息</li>
  *     <li><b>isJsonRequest</b> - 判断是否为JSON请求</li>

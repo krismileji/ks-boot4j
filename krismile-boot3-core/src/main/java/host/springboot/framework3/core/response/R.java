@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 /**
  * 全局响应VO类
  *
- * <p>该类为全局响应VO, 所有控制器返回必须使用此类进行返回, 返回值类型参考 {@link BaseVO} 下所有实现
+ * <p>该类为全局响应VO, 所有控制器返回必须使用此类进行返回, 返回值类型参考 {@link BaseVO} 下所有实现</p>
  *
  * @author JiYinchuan
  * @see BaseVO

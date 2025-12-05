@@ -8,7 +8,7 @@ import java.time.temporal.ChronoField;
 /**
  * 规则常量
  *
- * <p>正则表达式
+ * <p>正则表达式</p>
  * <p><a href="https://c.runoob.com/front-end/854/">点击查看常用正则表达式</a>
  * <ul>
  *     <li><b>{@link Regex#PHONE}</b> - 电话号码正则表达式</li>
@@ -20,8 +20,8 @@ import java.time.temporal.ChronoField;
  *     <li><b>{@link Regex#STRONG_PASSWORD_WITH_SPECIAL}</b> - 强密码正则表达式</li>
  * </ul>
  * <hr/>
- * <p>时间格式
- * <p>Pattern:
+ * <p>时间格式</p>
+ * <p>Pattern:</p>
  * <ul>
  *     <li><b>{@link Date#NORM_DATETIME_PATTERN}</b> - yyyy-MM-dd HH:mm:ss</li>
  *     <li><b>{@link Date#NORM_DATE_PATTERN}</b> - yyyy-MM-dd</li>
@@ -30,7 +30,7 @@ import java.time.temporal.ChronoField;
  *     <li><b>{@link Date#NORM_YEARMONTH_PATTERN}</b> - yyyy-MM</li>
  *     <li><b>{@link Date#NORM_MONTHDAY_PATTERN}</b> - MM-dd</li>
  * </ul>
- * <p>Formatter:
+ * <p>Formatter:</p>
  * <ul>
  *     <li><b>{@link Date#NORM_DATETIME_FORMATTER}</b> - yyyy-MM-dd HH:mm:ss</li>
  *     <li><b>{@link Date#NORM_DATE_FORMATTER}</b> - yyyy-MM-dd</li>
@@ -67,7 +67,7 @@ public abstract class PatternConstant {
         /**
          * 电话号码正则表达式
          *
-         * <p>支持手机号码/3-4位区号/7-8位直播号码/1－4位分机号
+         * <p>支持手机号码/3-4位区号/7-8位直播号码/1－4位分机号</p>
          */
         public static final String PHONE = "((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-" +
                 "(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)";
@@ -85,28 +85,28 @@ public abstract class PatternConstant {
         /**
          * 账号正则表达式
          *
-         * <p>字母开头, 允许 [5-16] 字节, 允许字母数字下划线
+         * <p>字母开头, 允许 [5-16] 字节, 允许字母数字下划线</p>
          */
         public static final String ACCOUNT = "^[a-zA-Z][a-zA-Z0-9_]{4,15}$";
 
         /**
          * 密码正则表达式
          *
-         * <p>以字母开头, 长度在 [6~16] 之间
+         * <p>以字母开头, 长度在 [6~16] 之间</p>
          */
         public static final String PASSWORD = "^[a-zA-Z]\\w{5,17}$";
 
         /**
          * 强密码正则表达式
          *
-         * <p>以字母开头, 长度在 [8~16] 之间, 含大小写字母和数字
+         * <p>以字母开头, 长度在 [8~16] 之间, 含大小写字母和数字</p>
          */
         public static final String STRONG_PASSWORD = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,16}$";
 
         /**
          * 强密码带特殊符号正则表达式
          *
-         * <p>以字母开头, 长度在 [8~16] 之间, 含大小写字母/数字/特殊字符
+         * <p>以字母开头, 长度在 [8~16] 之间, 含大小写字母/数字/特殊字符</p>
          */
         public static final String STRONG_PASSWORD_WITH_SPECIAL = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,16}$";
 

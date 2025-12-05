@@ -13,13 +13,13 @@ import java.util.Objects;
 /**
  * 重复获取请求流包装器
  *
- * <p>该类主要为解决 {@link HttpServletRequest} 中 {@code inputStream} 流只能被读取一次问题
+ * <p>该类主要为解决 {@link HttpServletRequest} 中 {@code inputStream} 流只能被读取一次问题</p>
  * <p>在处理表单请求时需要注意, 如果带有文件将会调用 {@link HttpServletRequest#getParts()} 拿到文件域,F
  * 最终会调用 {@code Request#getParts()} 方法, 核心为 {@code getParts()} 方法中的 {@code parseParts(boolean)} 方法,
  * 在 {@code parseParts(boolean)} 方法中将会使用 {@code ServletFileUpload#parseRequest(RequestContext)} 方法进行解析文件,
- * 在 {@code parseRequest(RequestContext)} 方法中取出输入流, 所以如果为非 {@code json} 请求时不进行任何操作
+ * 在 {@code parseRequest(RequestContext)} 方法中取出输入流, 所以如果为非 {@code json} 请求时不进行任何操作</p>
  * <p><b>Warning:</b> 在提前使用 {@link #getInputStream()} 方法时依然需要谨慎使用
- * (建议提前使用 {@link HttpRequestUtils#isJsonRequest(HttpServletRequest)}) 判断该请求是否为 {@code json} 请求
+ * (建议提前使用 {@link HttpRequestUtils#isJsonRequest(HttpServletRequest)}) 判断该请求是否为 {@code json} 请求</p>
  *
  * @author JiYinchuan
  * @since 0.1.0

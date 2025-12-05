@@ -24,7 +24,7 @@ public class XssUtils {
     /**
      * 默认输出配置
      *
-     * <p>此处禁止了格式化代码输出
+     * <p>此处禁止了格式化代码输出</p>
      */
     private static final Document.OutputSettings DEFAULT_OUTPUT_SETTINGS = new Document.OutputSettings().prettyPrint(false);
 

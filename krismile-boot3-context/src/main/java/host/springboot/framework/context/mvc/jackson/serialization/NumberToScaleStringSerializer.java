@@ -18,7 +18,7 @@ import java.util.Objects;
  * 自定义数字转带小数位字符串序列化器
  *
  * <p>实现类说明: {@link StdSerializer} 为 jackson 推荐自定义序列化器基类,
- * {@link ContextualSerializer} 为 jackson 创建序列化程序的上下文实例以用于处理受支持类型的属性
+ * {@link ContextualSerializer} 为 jackson 创建序列化程序的上下文实例以用于处理受支持类型的属性</p>
  * <p><b>Warning: </b>因该自定义序列化器为 {@link NumberToScaleString @NumberToScaleString} 注解标记到请求类字段上,
  * 即只有标记了注解才会执行该类, 所以在获取注解失败时将抛出未知异常信息 {@value UNKNOWN_ERROR_MESSAGE}
  *

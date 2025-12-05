@@ -16,10 +16,10 @@ import java.util.function.BiFunction;
 /**
  * 全局枚举父接口
  *
- * <p>该类为全局枚举父接口, 为避免部分功能失效, 项目中所有的自定义枚举原则上都必须实现该接口
+ * <p>该类为全局枚举父接口, 为避免部分功能失效, 项目中所有的自定义枚举原则上都必须实现该接口</p>
  * <p><b>Tip</b> - 该类提供了 {@link #additionalValue()} 和 {@link #additionalMapValue()} 用于提供附加值,
  * 开发者可选择性的重写这两个方法或任意一个方法, 便于获取每个枚举对象的附加参数值
- * <p>注意: 如果未重写方法直接调动附加值方法请注意判断 {@code null} 值, 避免出现空指针异常
+ * <p>注意: 如果未重写方法直接调动附加值方法请注意判断 {@code null} 值, 避免出现空指针异常</p>
  *
  * @param <T> 枚举值类型
  * @author JiYinchuan
@@ -74,7 +74,7 @@ public interface BaseEnum<T> {
     /**
      * 动态解析枚举参数值
      *
-     * <p>解析失败时将抛出异常
+     * <p>解析失败时将抛出异常</p>
      *
      * @param value     参数值
      * @param enumClass 需要解析的枚举类

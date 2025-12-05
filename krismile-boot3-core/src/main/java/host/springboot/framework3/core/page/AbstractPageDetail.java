@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * 分页参数抽象类, 定义了默认的分页参数
  *
- * <p>框架默认提供了实现类, 如不满足使用需要可以自行继承该类:
+ * <p>框架默认提供了实现类, 如不满足使用需要可以自行继承该类:</p>
  * <ul>
  *     <li><b>{@link ListPage}</b> - 默认分页对象, 其分页数据为 {@link java.util.List}</li>
  *     <li><b>{@link SetPage}</b> - 默认分页对象, 其分页数据为 {@link java.util.Set}</li>

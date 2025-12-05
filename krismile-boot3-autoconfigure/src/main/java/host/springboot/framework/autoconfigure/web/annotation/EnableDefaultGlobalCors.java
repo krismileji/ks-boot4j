@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 /**
  * 启用全局跨域默认处理自动配置
  *
- * <p>启用此注解后, 将全局添加进行跨域配置, 开发者无需再实现跨域配置
+ * <p>启用此注解后, 将全局添加进行跨域配置, 开发者无需再实现跨域配置</p>
  *
  * @author JiYinchuan
  * @see DefaultCorsFilter

@@ -10,7 +10,7 @@ import java.util.Collection;
 /**
  * 标准分页接口
  *
- * <p>该接口为业务标准分页接口, 已默认提供实现类如下:
+ * <p>该接口为业务标准分页接口, 已默认提供实现类如下:</p>
  * <ul>
  *     <li><b>{@link AbstractPageDetail}</b> - 分页参数抽象类, 定义了分页相关的参数</li>
  *     <li><b>{@link ListPage}</b> - 最终实现对象, 继承至 {@link AbstractPageDetail}, 其分页数据为 {@link java.util.List}</li>

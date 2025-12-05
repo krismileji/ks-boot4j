@@ -35,7 +35,7 @@ import java.util.TimeZone;
 /**
  * Jackson自动配置
  *
- * <p>该类自动配置了 Jackson 的常用功能
+ * <p>该类自动配置了 Jackson 的常用功能</p>
  * 已默认配置序列化/反序列化规则如下:
  * <ul>
  *     <li>{@link BigInteger} auto mapping {@link String}</li>
@@ -54,7 +54,7 @@ import java.util.TimeZone;
  *     <li>{@link OffsetTime} auto mapping {@code HH:mm:ss+HH:MM:ss}</li>
  * </ul>
  * <p>该类采用 {@link Jackson2ObjectMapperBuilderCustomizer} 的原因是默认 Jackson 已存在一些默认配置内容,
- * 通过此种方式可以实现在不修改默认配置的情况下新增我们自定义的配置
+ * 通过此种方式可以实现在不修改默认配置的情况下新增我们自定义的配置</p>
  *
  * @param jacksonProperties Jackson配置文件
  * @param ksWebProperties   KsWeb配置文件

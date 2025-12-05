@@ -17,7 +17,7 @@ import java.util.Objects;
  * 清除空格反序列化器
  *
  * <p>实现类说明: {@link StdSerializer} 为 jackson 推荐自定义序列化器基类,
- * {@link ContextualSerializer} 为 jackson 创建序列化程序的上下文实例以用于处理受支持类型的属性
+ * {@link ContextualSerializer} 为 jackson 创建序列化程序的上下文实例以用于处理受支持类型的属性</p>
  * <p><b>Warning: </b>将 {@link TrimWhiteSpace @TrimWhiteSpace} 注解标记到请求类字段上, 只有标记了注解才会执行
  *
  * @author JiYinchuan
