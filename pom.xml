@@ -10,7 +10,7 @@
     </parent>
     <groupId>host.springboot.framework</groupId>
     <artifactId>krismile-boot3-framework</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <packaging>pom</packaging>
 
     <name>krismile-boot3-framework</name>
@@ -45,8 +45,9 @@
         <module>krismile-boot3-core</module>
         <module>krismile-boot3-context</module>
         <module>krismile-boot3-autoconfigure</module>
-        <module>krismile-boot3-starter-mybatisplus</module>
         <module>krismile-boot3-bom</module>
+        <module>krismile-boot3-starter-mybatisplus</module>
+        <module>krismile-boot3-starter-redis</module>
     </modules>
 
     <properties>
@@ -55,7 +56,11 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <krismile.boot.version>0.1.0</krismile.boot.version>
+        <krismile.boot.core.version>0.1.0</krismile.boot.core.version>
+        <krismile.boot.context.version>0.1.0</krismile.boot.context.version>
+        <krismile.boot.autoconfigure.version>0.1.0</krismile.boot.autoconfigure.version>
+        <krismile.boot.starter-mybatisplus.version>0.1.0</krismile.boot.starter-mybatisplus.version>
+        <krismile.boot.starter-redis.version>0.2.0</krismile.boot.starter-redis.version>
         <!-- Spring Boot -->
         <spring.boot.version>3.5.8</spring.boot.version>
         <!-- jspecify -->
@@ -115,22 +120,27 @@
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-core</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-context</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.context.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-autoconfigure</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.autoconfigure.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-starter-mybatisplus</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.starter-mybatisplus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>host.springboot.framework</groupId>
+                <artifactId>krismile-boot3-starter-redis</artifactId>
+                <version>${krismile.boot.starter-redis.version}</version>
             </dependency>
 
             <!-- JWT -->
