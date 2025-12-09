@@ -51,7 +51,7 @@
     </modules>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -221,7 +221,6 @@
 
     <build>
         <plugins>
-            <!-- 代码编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -246,8 +245,6 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-
-            <!-- 自动生成javadoc文档与带javadoc的jar包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -262,8 +259,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- 自动生成带源码的jar包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -278,8 +273,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- 启用在配置文件中获取pom文件属性 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>

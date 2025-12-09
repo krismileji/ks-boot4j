@@ -39,7 +39,7 @@
     </developers>
 
     <properties>
-        <java.version>25</java.version>
+        <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,27 +51,27 @@
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-core</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-context</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.context.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-autoconfigure</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.autoconfigure.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-starter-mybatisplus</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.starter-mybatisplus.version}</version>
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-starter-redis</artifactId>
-                <version>${krismile.boot.version}</version>
+                <version>${krismile.boot.starter-redis.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
