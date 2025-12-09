@@ -38,7 +38,7 @@ public class KsRedisProperties {
      *
      * @since 0.2.0
      */
-    public static final String KEY = KrismileConstant.KRISMILE_LOWERCASE + "." + "web";
+    public static final String KEY = KrismileConstant.KRISMILE_LOWERCASE + "." + "redis";
 
     /**
      * 是否启用 Redis 自动配置
