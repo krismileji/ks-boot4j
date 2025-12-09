@@ -103,7 +103,7 @@ public class KsRedisAutoConfiguration {
     /**
      * 创建 RedisTemplate
      * <p>
-     * 会根据 {@link KsRedisProperties#getKeySerializerType()} 选择合适的 Key / Value 序列化器：
+     * 会根据配置项 {@code krismile.redis.key-serializer-type} 选择合适的 Key / Value 序列化器：
      * </p>
      * <ul>
      *     <li>{@code ORIGIN}：使用普通字符串 Key 与普通 JSON Value</li>
