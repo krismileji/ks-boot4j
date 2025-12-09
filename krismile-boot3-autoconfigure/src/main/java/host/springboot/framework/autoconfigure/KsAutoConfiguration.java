@@ -12,15 +12,15 @@ import org.springframework.context.annotation.Import;
  * @since 0.1.0
  */
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties(KrismileProperties.class)
+@EnableConfigurationProperties(KsProperties.class)
 @Import(SpringUtils.class)
-public class KrismileAutoConfiguration {
+public class KsAutoConfiguration {
 
     /**
      * 构造器
      *
      * @since 0.1.0
      */
-    public KrismileAutoConfiguration() {
+    public KsAutoConfiguration() {
     }
 }

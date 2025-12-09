@@ -1,6 +1,6 @@
 package host.springboot.framework.autoconfigure.web.properties;
 
-import host.springboot.framework.autoconfigure.KrismileProperties;
+import host.springboot.framework.autoconfigure.KsProperties;
 import host.springboot.framework.autoconfigure.web.properties.aspect.KsRequestLogProperties;
 import host.springboot.framework.autoconfigure.web.properties.filter.KsRequestBodyWrapperProperties;
 import host.springboot.framework.autoconfigure.web.properties.filter.KsXssProperties;
@@ -57,7 +57,7 @@ public class KsWebProperties {
     /**
      * 配置文件前缀
      */
-    public static final String KEY = KrismileProperties.KEY + "." + "web";
+    public static final String KEY = KsProperties.KEY + "." + "web";
 
     /**
      * 是否启用

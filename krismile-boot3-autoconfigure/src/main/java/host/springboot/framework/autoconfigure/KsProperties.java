@@ -45,8 +45,8 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @since 0.1.0
  */
 @Data
-@ConfigurationProperties(prefix = KrismileProperties.KEY)
-public class KrismileProperties {
+@ConfigurationProperties(prefix = KsProperties.KEY)
+public class KsProperties {
 
     /**
      * krismile 配置文件 Key
@@ -64,6 +64,6 @@ public class KrismileProperties {
      *
      * @since 0.1.0
      */
-    public KrismileProperties() {
+    public KsProperties() {
     }
 }
