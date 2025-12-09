@@ -10,12 +10,39 @@
     </parent>
 
     <artifactId>krismile-boot3-starter-redis</artifactId>
+    <version>0.2.0</version>
+
+    <url>https://www.springboot.host</url>
+    <inceptionYear>2025</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>JiYinchuan</name>
+            <email>jyc@krismile.cn</email>
+            <roles>
+                <role>Project Manager</role>
+            </roles>
+            <organization>Krismile</organization>
+            <organizationUrl>https://www.krismile.cn</organizationUrl>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
