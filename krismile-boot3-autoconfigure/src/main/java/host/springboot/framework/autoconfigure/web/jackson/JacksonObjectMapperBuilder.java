@@ -72,7 +72,6 @@ public record JacksonObjectMapperBuilder(
         jacksonObjectMapperBuilder.featuresToEnable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN);
         jacksonObjectMapperBuilder.serializerByType(BigInteger.class, ToStringSerializer.instance);
         jacksonObjectMapperBuilder.serializerByType(Long.class, ToStringSerializer.instance);
-        jacksonObjectMapperBuilder.serializerByType(Enum.class, ToStringSerializer.instance);
         jacksonObjectMapperBuilder.serializerByType(BaseEnum.class, new BaseEnumSerializer());
 
         DateTimeFormatTypeEnum formatType = this.ksWebProperties.getTimeFormatType();
