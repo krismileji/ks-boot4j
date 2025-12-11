@@ -56,32 +56,11 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <krismile.boot.core.version>0.1.0</krismile.boot.core.version>
-        <krismile.boot.context.version>0.1.0</krismile.boot.context.version>
-        <krismile.boot.autoconfigure.version>0.1.0</krismile.boot.autoconfigure.version>
-        <krismile.boot.starter-mybatisplus.version>0.1.0</krismile.boot.starter-mybatisplus.version>
-        <krismile.boot.starter-redis.version>0.2.0</krismile.boot.starter-redis.version>
         <!-- Spring Boot -->
         <spring.boot.version>3.5.8</spring.boot.version>
+        <ks.boot4j.version>0.2.0</ks.boot4j.version>
         <!-- jspecify -->
         <jspecify.version>1.0.0</jspecify.version>
-        <!-- JWT -->
-        <jwt.version>4.5.0</jwt.version>
-        <!-- ORM -->
-        <druid-spring-boot-starter.version>1.2.27</druid-spring-boot-starter.version>
-        <mybatis-plus.version>3.5.14</mybatis-plus.version>
-        <!-- Commons -->
-        <commons-lang3.version>3.20.0</commons-lang3.version>
-        <commons-collections4.version>4.5.0</commons-collections4.version>
-        <common-io.version>2.21.0</common-io.version>
-        <commons-codec.version>1.20.0</commons-codec.version>
-        <!-- Utils -->
-        <hutool.version>5.8.41</hutool.version>
-        <fastjson2.version>2.0.60</fastjson2.version>
-        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
-        <jsoup.version>1.21.2</jsoup.version>
-        <modelmapper.version>3.2.6</modelmapper.version>
-        <mapstruct.version>1.6.3</mapstruct.version>
         <!-- swagger -->
         <swagger-annotations.version>2.2.40</swagger-annotations.version>
     </properties>
@@ -115,110 +94,6 @@
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>host.springboot.framework</groupId>
-                <artifactId>krismile-boot3-core</artifactId>
-                <version>${krismile.boot.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>host.springboot.framework</groupId>
-                <artifactId>krismile-boot3-context</artifactId>
-                <version>${krismile.boot.context.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>host.springboot.framework</groupId>
-                <artifactId>krismile-boot3-autoconfigure</artifactId>
-                <version>${krismile.boot.autoconfigure.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>host.springboot.framework</groupId>
-                <artifactId>krismile-boot3-starter-mybatisplus</artifactId>
-                <version>${krismile.boot.starter-mybatisplus.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>host.springboot.framework</groupId>
-                <artifactId>krismile-boot3-starter-redis</artifactId>
-                <version>${krismile.boot.starter-redis.version}</version>
-            </dependency>
-
-            <!-- JWT -->
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>${jwt.version}</version>
-            </dependency>
-
-            <!-- Mysql + MybatisPlus -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid-spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-bom</artifactId>
-                <version>${mybatis-plus.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- Velocity -->
-            <dependency>
-                <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity-engine-core</artifactId>
-                <version>${velocity.version}</version>
-            </dependency>
-
-            <!-- Commons -->
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${common-io.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${commons-collections4.version}</version>
-            </dependency>
-
-            <!-- Utils -->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-bom</artifactId>
-                <version>${hutool.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.fastjson2</groupId>
-                <artifactId>fastjson2</artifactId>
-                <version>${fastjson2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>transmittable-thread-local</artifactId>
-                <version>${transmittable-thread-local.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jsoup</groupId>
-                <artifactId>jsoup</artifactId>
-                <version>${jsoup.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -232,11 +107,6 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
-                        </path>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${mapstruct.version}</version>
                         </path>
                         <path>
                             <groupId>org.springframework.boot</groupId>

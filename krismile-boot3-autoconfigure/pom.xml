@@ -45,6 +45,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>host.springboot.framework</groupId>
+                <artifactId>krismile-boot3-bom</artifactId>
+                <version>${ks.boot4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Model -->
         <dependency>
