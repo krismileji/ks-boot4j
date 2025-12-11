@@ -1,4 +1,4 @@
-package host.springboot.framework3.core.util.common;
+package host.springboot.framework3.core.util;
 
 import org.jspecify.annotations.NonNull;
 
