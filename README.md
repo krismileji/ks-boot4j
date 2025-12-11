@@ -8,7 +8,7 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.8-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/technologies/)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/)
 
 [快速开始](#-快速开始) · [核心特性](#-核心特性) · [模块说明](#-模块说明) · [文档](#-文档) · [贡献指南](#-贡献)
 
@@ -48,7 +48,7 @@
 ### 🎯 现代化技术栈
 
 - **Spring Boot 3.5.8**：基于最新的 Spring Boot 3 版本，兼容 Jakarta EE 9+
-- **Java 25**：支持最新的 Java 语言特性
+- **Java 21**：支持 Java 21 LTS 版本特性
 - **MyBatis-Plus 3.5.14**：简化数据库访问逻辑
 - **Fastjson2 2.0.60**：高性能 JSON 处理
 - **Redis 集成**：提供基于 Redis 的缓存能力，支持 Spring Cache 等常见用法
@@ -61,7 +61,7 @@
 
 |       类型        |  版本   | 最低支持版本 |
 |:---------------:|:-----:|:------:|
-|    **Java**     |  25   |   21   |
+|    **Java**     |  21   |   21   |
 | **Spring Boot** | 3.5.8 | 3.0.13 |
 |    **Maven**    | 3.6+  | 3.6.0  |
 
