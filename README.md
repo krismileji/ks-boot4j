@@ -149,7 +149,7 @@ public class Application {
 
 ```java
 import host.springboot.framework3.core.response.R;
-import host.springboot.framework3.core.response.vo.SingleVO;
+import host.springboot.framework3.core.response.vo.VO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -157,8 +157,8 @@ import org.springframework.web.bind.annotation.*;
 public class HelloController {
 
     @GetMapping("/hello")
-    public SingleVO<String> hello(@RequestParam String name) {
-        return R.okSingle("Hello, " + name + "!");
+    public VO<String> hello(@RequestParam String name) {
+        return R.ok("Hello, " + name + "!");
     }
 }
 ```
