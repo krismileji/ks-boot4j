@@ -1,7 +1,7 @@
 package host.springboot.framework3.core.page;
 
 import host.springboot.framework3.core.page.query.PageQuery;
-import host.springboot.framework3.core.response.vo.PageDetailVO;
+import host.springboot.framework3.core.response.vo.PageVO;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -114,14 +114,14 @@ public abstract class AbstractPageDetail<E, C extends Collection<E>> implements 
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @since 0.1.0
      */
-    protected AbstractPageDetail(PageDetailVO pageDetailVO) {
+    protected AbstractPageDetail(PageVO pageVO) {
         this();
-        this.setPageNo(pageDetailVO.getPageNo());
-        this.setPageSize(pageDetailVO.getPageSize());
-        this.setTotalCount(pageDetailVO.getTotalCount());
+        this.setPageNo(pageVO.getPageNo());
+        this.setPageSize(pageVO.getPageSize());
+        this.setTotalCount(pageVO.getTotalCount());
         this.adjustPageNo();
     }
 

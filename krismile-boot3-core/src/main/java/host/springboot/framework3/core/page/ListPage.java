@@ -1,7 +1,7 @@
 package host.springboot.framework3.core.page;
 
 import host.springboot.framework3.core.page.query.PageQuery;
-import host.springboot.framework3.core.response.vo.PageDetailVO;
+import host.springboot.framework3.core.response.vo.PageVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -113,22 +113,22 @@ public class ListPage<T> extends AbstractPageDetail<T, List<T>> implements Seria
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @since 0.1.0
      */
-    public ListPage(@NonNull PageDetailVO pageDetailVO) {
-        super(pageDetailVO);
+    public ListPage(@NonNull PageVO pageVO) {
+        super(pageVO);
     }
 
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @param records      分页数据
      * @since 0.1.0
      */
-    public ListPage(@NonNull PageDetailVO pageDetailVO, List<T> records) {
-        super(pageDetailVO);
+    public ListPage(@NonNull PageVO pageVO, List<T> records) {
+        super(pageVO);
         this.setRecords(records);
     }
 }

@@ -2,7 +2,7 @@ package host.springboot.framework3.core.page;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import host.springboot.framework3.core.response.vo.PageDetailVO;
+import host.springboot.framework3.core.response.vo.PageVO;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Collection;
@@ -131,14 +131,14 @@ public interface Pageable<T extends Collection<?>> {
     }
 
     /**
-     * 获取分页详情VO
+     * 获取分页详情 VO
      *
-     * @return 分页详情VO
+     * @return 分页详情 VO
      * @since 0.1.0
      */
     @JsonIgnore
     @JSONField(serialize = false, deserialize = false)
-    default @NonNull PageDetailVO convertPageDetailVO() {
-        return new PageDetailVO(this.getPageNo(), this.getPageSize(), this.getTotalCount());
+    default @NonNull PageVO convertPageDetailVO() {
+        return new PageVO(this.getPageNo(), this.getPageSize(), this.getTotalCount());
     }
 }

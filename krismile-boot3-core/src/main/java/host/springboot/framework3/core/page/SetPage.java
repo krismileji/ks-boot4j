@@ -1,7 +1,7 @@
 package host.springboot.framework3.core.page;
 
 import host.springboot.framework3.core.page.query.PageQuery;
-import host.springboot.framework3.core.response.vo.PageDetailVO;
+import host.springboot.framework3.core.response.vo.PageVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -113,22 +113,22 @@ public class SetPage<T> extends AbstractPageDetail<T, Set<T>> implements Seriali
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @since 0.1.0
      */
-    public SetPage(@NonNull PageDetailVO pageDetailVO) {
-        super(pageDetailVO);
+    public SetPage(@NonNull PageVO pageVO) {
+        super(pageVO);
     }
 
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @param records      分页数据
      * @since 0.1.0
      */
-    public SetPage(@NonNull PageDetailVO pageDetailVO, Set<T> records) {
-        super(pageDetailVO);
+    public SetPage(@NonNull PageVO pageVO, Set<T> records) {
+        super(pageVO);
         this.setRecords(records);
     }
 }
