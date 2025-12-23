@@ -154,7 +154,7 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.2.0
      */
-    public static <T> VO<T> ok(@Nullable T data) {
+    public static <T> VO<T> data(@Nullable T data) {
         return new VO<>(ErrorCodeEnum.OK, data);
     }
 
@@ -167,7 +167,7 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.2.0
      */
-    public static <T> VO<T> ok(
+    public static <T> VO<T> data(
             @Nullable String userTip,
             @Nullable T data) {
         return new VO<>(ErrorCodeEnum.OK, userTip, data);
@@ -183,7 +183,7 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.2.0
      */
-    public static <T> VO<T> ok(
+    public static <T> VO<T> data(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @Nullable T data) {
@@ -201,7 +201,7 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.1.0
      */
-    public static <T> VO<T> ok(
+    public static <T> VO<T> data(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @Nullable String userTip,
@@ -216,8 +216,8 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.1.0
      */
-    public static VO<?> ok(@NonNull Supplier<?> supplier) {
-        return ok(null, supplier);
+    public static VO<?> data(@NonNull Supplier<?> supplier) {
+        return data(null, supplier);
     }
 
     /**
@@ -228,10 +228,10 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.1.0
      */
-    public static VO<?> ok(
+    public static VO<?> data(
             @Nullable String userTip,
             @NonNull Supplier<?> supplier) {
-        return ok(ErrorCodeEnum.OK.getValue(), ErrorCodeEnum.OK.getReasonPhrase(), userTip, supplier);
+        return data(ErrorCodeEnum.OK.getValue(), ErrorCodeEnum.OK.getReasonPhrase(), userTip, supplier);
     }
 
     /**
@@ -243,11 +243,11 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.1.0
      */
-    public static VO<?> ok(
+    public static VO<?> data(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @NonNull Supplier<?> supplier) {
-        return ok(errorCode, errorMessage, null, supplier);
+        return data(errorCode, errorMessage, null, supplier);
     }
 
     /**
@@ -260,15 +260,15 @@ public final class R implements Serializable {
      * @return 成功返回
      * @since 0.1.0
      */
-    public static VO<?> ok(
+    public static VO<?> data(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @Nullable String userTip,
             @NonNull Supplier<?> supplier) {
         Object data = supplier.get();
         return data instanceof Pageable<?> pageable
-                ? ok(errorCode, errorCode, userTip, pageable)
-                : ok(errorCode, errorMessage, userTip, data);
+                ? data(errorCode, errorCode, userTip, pageable)
+                : data(errorCode, errorMessage, userTip, data);
     }
 
     /**
@@ -280,7 +280,7 @@ public final class R implements Serializable {
      * @return 分页数据成功返回
      * @since 0.2.0
      */
-    public static <E, T extends Collection<E>> VO<T> ok(@NonNull Pageable<T> pageable) {
+    public static <E, T extends Collection<E>> VO<T> page(@NonNull Pageable<T> pageable) {
         return new VO<>(ErrorCodeEnum.OK, pageable.getRecords(), pageable.convertPageDetailVO());
     }
 
@@ -294,7 +294,7 @@ public final class R implements Serializable {
      * @return 分页数据成功返回
      * @since 0.2.0
      */
-    public static <E, T extends Collection<E>> VO<T> ok(@Nullable String userTip, @NonNull Pageable<T> pageable) {
+    public static <E, T extends Collection<E>> VO<T> page(@Nullable String userTip, @NonNull Pageable<T> pageable) {
         return new VO<>(ErrorCodeEnum.OK, userTip, pageable.getRecords(), pageable.convertPageDetailVO());
     }
 
@@ -309,7 +309,7 @@ public final class R implements Serializable {
      * @return 分页数据成功返回
      * @since 0.2.0
      */
-    public static <E, T extends Collection<E>> VO<T> ok(
+    public static <E, T extends Collection<E>> VO<T> page(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @NonNull Pageable<T> pageable) {
@@ -328,7 +328,7 @@ public final class R implements Serializable {
      * @return 分页数据成功返回
      * @since 0.2.0
      */
-    public static <E, T extends Collection<E>> VO<T> ok(
+    public static <E, T extends Collection<E>> VO<T> page(
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @Nullable String userTip,
