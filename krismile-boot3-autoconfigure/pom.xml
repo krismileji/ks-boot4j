@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>krismile-boot3-autoconfigure</artifactId>
-    <version>0.1.0</version>
 
     <url>https://www.springboot.host</url>
     <inceptionYear>2025</inceptionYear>
