@@ -158,7 +158,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public VO<String> hello(@RequestParam String name) {
-        return R.ok("Hello, " + name + "!");
+        return R.data("Hello, " + name + "!");
     }
 }
 ```
