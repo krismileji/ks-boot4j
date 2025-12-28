@@ -57,13 +57,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Tomcat -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- SpringBoot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
