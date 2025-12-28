@@ -10,7 +10,6 @@ import org.jspecify.annotations.Nullable;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -89,26 +88,26 @@ public final class R implements Serializable {
     /**
      * 成功返回并执行函数式接口
      *
-     * @param consumer 函数式接口
+     * @param function 函数式接口
      * @return 成功返回
      * @since 0.2.0
      */
-    public static VO<?> ok(@NonNull Consumer<Void> consumer) {
-        return ok(null, consumer);
+    public static VO<?> ok(@NonNull Runnable function) {
+        return ok(null, function);
     }
 
     /**
      * 成功返回并执行函数式接口
      *
      * @param userTip  用户提示信息
-     * @param consumer 函数式接口
+     * @param function 函数式接口
      * @return 成功返回
      * @since 0.2.0
      */
     public static VO<?> ok(
             @Nullable String userTip,
-            @NonNull Consumer<Void> consumer) {
-        return ok(ErrorCodeEnum.OK.getValue(), ErrorCodeEnum.OK.getReasonPhrase(), userTip, consumer);
+            @NonNull Runnable function) {
+        return ok(ErrorCodeEnum.OK.getValue(), ErrorCodeEnum.OK.getReasonPhrase(), userTip, function);
     }
 
     /**
@@ -116,15 +115,15 @@ public final class R implements Serializable {
      *
      * @param errorCode    错误码
      * @param errorMessage 错误信息
-     * @param consumer     函数式接口
+     * @param function     函数式接口
      * @return 成功返回
      * @since 0.2.0
      */
     public static VO<?> ok(
             @NonNull String errorCode,
             @NonNull String errorMessage,
-            @NonNull Consumer<Void> consumer) {
-        return ok(errorCode, errorMessage, null, consumer);
+            @NonNull Runnable function) {
+        return ok(errorCode, errorMessage, null, function);
     }
 
     /**
@@ -133,7 +132,7 @@ public final class R implements Serializable {
      * @param errorCode    错误码
      * @param errorMessage 错误信息
      * @param userTip      用户提示信息
-     * @param consumer     函数式接口
+     * @param function     函数式接口
      * @return 成功返回
      * @since 0.2.0
      */
@@ -141,8 +140,8 @@ public final class R implements Serializable {
             @NonNull String errorCode,
             @NonNull String errorMessage,
             @Nullable String userTip,
-            @NonNull Consumer<Void> consumer) {
-        consumer.accept(null);
+            @NonNull Runnable function) {
+        function.run();
         return new VO<>(errorCode, errorMessage, userTip);
     }
 
@@ -353,7 +352,7 @@ public final class R implements Serializable {
      * 失败返回
      *
      * @param baseEnum 错误枚举
-     * @param userTip 用户提示信息
+     * @param userTip  用户提示信息
      * @return 失败返回
      * @since 0.2.0
      */
