@@ -26,13 +26,6 @@ public final class ExecuteOrder {
     public static final class Aop {
 
         /**
-         * 请求日志记录切面的执行顺序
-         *
-         * @since 0.2.0
-         */
-        public static final int REQUEST_LOG = 100;
-
-        /**
          * 参数校验切面的执行顺序
          *
          * @since 0.2.0
@@ -58,13 +51,6 @@ public final class ExecuteOrder {
      * @since 0.2.0
      */
     public static final class Filter {
-
-        /**
-         * 请求体包装过滤器的执行顺序
-         *
-         * @since 0.2.0
-         */
-        public static final int REQUEST_BODY_WRAPPER = -10000;
 
         /**
          * XSS 攻击防御过滤器的执行顺序

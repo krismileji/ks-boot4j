@@ -80,64 +80,59 @@ public record RequestLogFilter(
     @Override
     public @NonNull Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-
-        // 检查是否需要忽略日志记录（通过 @IgnoreRequestLog 注解）
-        return shouldIgnoreRequestLog(exchange)
-                .flatMap(shouldIgnore -> {
-                    if (shouldIgnore) {
-                        // 忽略日志记录，直接继续过滤器链
-                        return chain.filter(exchange);
+    
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+    
+        // 先执行过滤器链,让 DispatcherHandler 设置 HandlerMethod
+        return chain.filter(exchange)
+                .doOnEach(signal -> {
+                    // 在请求完成后检查是否应该忽略日志记录
+                    if (!signal.isOnComplete() && !signal.isOnError()) {
+                        return;
                     }
-
-                    // 尝试从 Exchange 获取 HandlerMethod
+    
                     Object handler = exchange.getAttribute(HandlerMapping.BEST_MATCHING_HANDLER_ATTRIBUTE);
                     Method method = null;
                     if (handler instanceof HandlerMethod handlerMethod) {
                         method = handlerMethod.getMethod();
+    
+                        // 检查方法级别或类级别的 @IgnoreRequestLog 注解
+                        if (method.isAnnotationPresent(IgnoreRequestLog.class) ||
+                                handlerMethod.getBeanType().isAnnotationPresent(IgnoreRequestLog.class)) {
+                            return;
+                        }
                     }
-
+    
+                    stopWatch.stop();
+                    long executionTime = stopWatch.getTotalTimeMillis();
+    
                     // 解析请求信息
                     RequestInfo requestInfo = HttpRequestUtils.parseInfo(request, method);
-
-                    // 解析请求参数：结合 Query 参数和 FormData（如果存在）
-                    return HttpRequestUtils.parseRequestArgs(exchange, method)
+    
+                    // 解析请求参数
+                    HttpRequestUtils.parseRequestArgs(exchange, method)
                             .flatMap(requestArgs -> {
                                 requestInfo.setRequestMethodArgs(requestArgs);
-
-                                // 将 RequestInfo 存入 Exchange 属性，供其他组件访问
+    
+                                // 将 RequestInfo 存入 Exchange 属性,供其他组件访问
                                 exchange.getAttributes().put(RequestInfo.class.getSimpleName(), requestInfo);
-
-                                StopWatch stopWatch = new StopWatch();
-                                stopWatch.start();
-
-                                // 执行前置请求信息链式处理器
+    
+                                ResponseInfo responseInfo = new ResponseInfo()
+                                        .setExecutionTime(executionTime);
+    
+                                // 执行前置和后置请求信息链式处理器
                                 return this.executeBeforeChain(request, requestInfo)
-                                        .then(chain.filter(exchange))
-                                        .doOnSuccess(unused -> {
-                                            // 请求成功完成后的处理
-                                            stopWatch.stop();
-                                            long executionTime = stopWatch.getTotalTimeMillis();
-
-                                            // 构造响应信息（WebFlux 中无法直接获取响应结果，仅记录执行时间）
-                                            ResponseInfo responseInfo = new ResponseInfo()
-                                                    .setExecutionTime(executionTime);
-
-                                            // 执行后置请求信息链式处理器（注意：这里是同步执行，因为 doOnSuccess 不支持返回 Mono）
-                                            this.executeAfterChain(request, requestInfo, responseInfo).subscribe();
-                                        })
-                                        .doOnError(throwable -> {
-                                            // 请求执行出错时的处理
-                                            stopWatch.stop();
-                                            long executionTime = stopWatch.getTotalTimeMillis();
-
-                                            ResponseInfo responseInfo = new ResponseInfo()
-                                                    .setExecutionTime(executionTime);
-
-                                            // 执行后置处理链（错误情况）
-                                            this.executeAfterChain(request, requestInfo, responseInfo).subscribe();
-                                        })
-                                        .contextWrite(context -> context.put(RequestInfo.class.getSimpleName(), requestInfo));
-                            });
+                                        .then(this.executeAfterChain(request, requestInfo, responseInfo));
+                            })
+                            .contextWrite(context -> context.put(RequestInfo.class.getSimpleName(), requestInfo))
+                            .subscribe();
+                })
+                .contextWrite(context -> {
+                    // 预先创建基础 RequestInfo 供其他组件在请求处理期间使用
+                    RequestInfo requestInfo = HttpRequestUtils.parseInfo(request, null);
+                    exchange.getAttributes().put(RequestInfo.class.getSimpleName(), requestInfo);
+                    return context.put(RequestInfo.class.getSimpleName(), requestInfo);
                 });
     }
 
@@ -191,35 +186,5 @@ public record RequestLogFilter(
     @Override
     public @NonNull String logTag() {
         return "KS-Filter-RequestLog";
-    }
-
-    /**
-     * 判断是否应该忽略请求日志记录
-     *
-     * <p>通过检查 Handler 方法或类上的 {@link IgnoreRequestLog} 注解来判断</p>
-     * <p>利用 WebFlux 在 Exchange 属性中存储的 Handler 信息</p>
-     *
-     * @param exchange 服务器交换对象
-     * @return Mono&lt;Boolean&gt; true 表示应该忽略日志，false 表示应该记录日志
-     */
-    private @NonNull Mono<Boolean> shouldIgnoreRequestLog(@NonNull ServerWebExchange exchange) {
-        // 从 Exchange 属性中获取 HandlerMethod（由 DispatcherHandler 设置）
-        Object handler = exchange.getAttribute(HandlerMapping.BEST_MATCHING_HANDLER_ATTRIBUTE);
-
-        if (!(handler instanceof HandlerMethod handlerMethod)) {
-            // 如果不是 HandlerMethod 类型，默认不忽略
-            return Mono.just(false);
-        }
-
-        // 检查方法级别的 @IgnoreRequestLog 注解
-        Method method = handlerMethod.getMethod();
-        if (method.isAnnotationPresent(IgnoreRequestLog.class)) {
-            return Mono.just(true);
-        }
-
-        // 检查类级别的 @IgnoreRequestLog 注解
-        Class<?> beanType = handlerMethod.getBeanType();
-        boolean hasClassAnnotation = beanType.isAnnotationPresent(IgnoreRequestLog.class);
-        return Mono.just(hasClassAnnotation);
     }
 }

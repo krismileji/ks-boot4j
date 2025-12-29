@@ -114,7 +114,7 @@ public class HttpRequestUtils {
     }
 
     /**
-     * 判断是否为JSON请求
+     * 判断是否为 JSON 请求
      *
      * @param request ServerHttpRequest
      * @return 是否为JSON请求 [true: 是, false: 否]
