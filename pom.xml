@@ -48,6 +48,8 @@
         <module>krismile-boot3-bom</module>
         <module>krismile-boot3-starter-mybatisplus</module>
         <module>krismile-boot3-starter-redis</module>
+        <module>krismile-boot3-webflux-context</module>
+        <module>krismile-boot3-webflux-autoconfigure</module>
     </modules>
 
     <properties>

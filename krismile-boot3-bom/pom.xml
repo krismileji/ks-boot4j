@@ -76,7 +76,17 @@
             </dependency>
             <dependency>
                 <groupId>host.springboot.framework</groupId>
+                <artifactId>krismile-boot3-webflux-context</artifactId>
+                <version>${ks.boot4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>host.springboot.framework</groupId>
                 <artifactId>krismile-boot3-autoconfigure</artifactId>
+                <version>${ks.boot4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>host.springboot.framework</groupId>
+                <artifactId>krismile-boot3-webflux-autoconfigure</artifactId>
                 <version>${ks.boot4j.version}</version>
             </dependency>
             <dependency>
