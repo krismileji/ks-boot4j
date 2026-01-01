@@ -1,4 +1,5 @@
 host.springboot.framework.autoconfigure.KsAutoConfiguration
 host.springboot.framework.autoconfigure.web.KsWebAutoConfiguration
+host.springboot.framework.autoconfigure.web.KsJacksonAutoConfiguration
 host.springboot.framework.autoconfigure.web.KsRequestLogAutoConfiguration
 host.springboot.framework.autoconfigure.web.KsXssFilterAutoConfiguration
