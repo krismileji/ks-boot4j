@@ -144,33 +144,6 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
     // -------------------------------- 请求参数验证 --------------------------------
 
     /**
-     * 参数为空全局捕获（响应式）
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
-     * <p>捕获来自 {@link org.springframework.web.bind.annotation.RequestParam}</p>
-     *
-     * @param e        {@link org.springframework.web.bind.support.WebExchangeBindException}
-     * @param exchange {@link ServerWebExchange}
-     * @return 结果响应的 Mono 包装
-     * @since 0.2.0
-     */
-    @ExceptionHandler(org.springframework.web.bind.support.WebExchangeBindException.class)
-    public Mono<VO<?>> validationExceptionHandler(org.springframework.web.bind.support.WebExchangeBindException e, ServerWebExchange exchange) {
-        ServerHttpRequest request = exchange.getRequest();
-        String clientIp = IpUtils.getIpv4Address(request);
-        String requestUri = request.getURI().getPath();
-        String requestMethod = request.getMethod().name();
-        log().warn("[{}] -------------------------------- 参数绑定异常 -------------------------------- [Begin]", logTag());
-        return super.getRequestInfo(exchange).map(requestInfo -> {
-            List<String> errorMessages = super.parseAndPrintBindErrorMessage(e, requestUri, requestMethod,
-                    "参数绑定异常", clientIp, requestInfo);
-            log().warn("[{}] -------------------------------- 参数绑定异常 -------------------------------- [ End ]", logTag());
-            return R.fail(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
-                    String.join(", ", errorMessages),
-                    ApplicationException.DEFAULT_ERROR_USER_TIP);
-        });
-    }
-
-    /**
      * 参数转换异常全局捕获（响应式）
      *
      * @param e        {@link org.springframework.web.server.ServerWebInputException}
