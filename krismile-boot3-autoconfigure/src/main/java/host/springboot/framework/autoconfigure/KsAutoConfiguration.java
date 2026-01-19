@@ -1,8 +1,8 @@
 package host.springboot.framework.autoconfigure;
 
 import host.springboot.framework3.core.util.inner.SpringUtils;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
  * @author JiYinchuan
  * @since 0.1.0
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @EnableConfigurationProperties(KsProperties.class)
 @Import(SpringUtils.class)
 public class KsAutoConfiguration {

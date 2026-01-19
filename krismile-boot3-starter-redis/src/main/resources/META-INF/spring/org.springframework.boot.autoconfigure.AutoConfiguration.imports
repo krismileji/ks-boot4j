@@ -1,0 +1,2 @@
+host.springboot.framework.cache.redis.KsRedisAutoConfiguration
+host.springboot.framework.cache.redis.KsRedisReactiveAutoConfiguration

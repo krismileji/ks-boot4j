@@ -5,12 +5,12 @@ import host.springboot.framework.autoconfigure.web.properties.KsWebProperties;
 import host.springboot.framework.autoconfigure.web.properties.jackson.KsJacksonProperties;
 import host.springboot.framework3.core.constant.KrismileConstant;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Jackson 自动配置类
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @author JiYinchuan
  * @since 0.1.0
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ConditionalOnProperty(
         prefix = KsJacksonProperties.KEY,
         name = "enabled",
