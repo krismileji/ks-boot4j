@@ -44,6 +44,7 @@
 - ✅ **XSS 防护**：内置 XSS 过滤器，保护应用安全
 - ✅ **参数校验**：集成 AOP 参数校验，支持自定义校验逻辑
 - ✅ **统一响应**：标准化的 API 响应格式
+- ✅ **WebFlux 支持**：完整支持响应式编程模型，提供 WebFlux 专用模块
 
 ### 🎯 现代化技术栈
 
@@ -51,7 +52,8 @@
 - **Java 21**：支持 Java 21 LTS 版本特性
 - **MyBatis-Plus 3.5.14**：简化数据库访问逻辑
 - **Fastjson2 2.0.60**：高性能 JSON 处理
-- **Redis 集成**：提供基于 Redis 的缓存能力，支持 Spring Cache 等常见用法
+- **Redis 集成**：提供基于 Redis 的缓存能力，支持 Spring Cache 及响应式模式
+- **WebFlux 支持**：完整支持响应式 Web 应用开发
 
 ---
 
@@ -180,14 +182,16 @@ public class HelloController {
 
 ## 📦 模块说明
 
-|                   模块                   |    职责    |             主要功能              |
-|:--------------------------------------:|:--------:|:-----------------------------:|
-|         **krismile-boot3-bom**         |  依赖版本管理  |        统一管理框架内各模块的版本依赖        |
-|        **krismile-boot3-core**         | 核心工具类和常量 |    常量定义、枚举、异常类、工具类、统一响应封装     |
-|       **krismile-boot3-context**       | 上下文和中间件  |    全局异常处理、AOP 日志、过滤器、类型转换器    |
-|    **krismile-boot3-autoconfigure**    |   自动配置   |        属性配置、条件装配、组件注册         |
-| **krismile-boot3-starter-mybatisplus** |   数据访问   |  MyBatis-Plus 增强、服务层抽象、自动填充   |
-|    **krismile-boot3-starter-redis**    |   缓存支持   | RedisTemplate、Spring Cache 集成 |
+|                    模块                    |    职责     |               主要功能               |
+|:----------------------------------------:|:---------:|:--------------------------------:|
+|          **krismile-boot3-bom**          |  依赖版本管理   |         统一管理框架内各模块的版本依赖          |
+|         **krismile-boot3-core**          | 核心工具类和常量  |      常量定义、枚举、异常类、工具类、统一响应封装      |
+|        **krismile-boot3-context**        |  上下文和中间件  | 全局异常处理、AOP 日志、过滤器、类型转换器（MVC 模式）  |
+|    **krismile-boot3-webflux-context**    |  响应式上下文   |    全局异常处理、过滤器（WebFlux 响应式模式）     |
+|     **krismile-boot3-autoconfigure**     | 自动配置（MVC） |          属性配置、条件装配、组件注册          |
+| **krismile-boot3-webflux-autoconfigure** | 自动配置（响应式） |       WebFlux 专用的自动配置和属性管理       |
+|  **krismile-boot3-starter-mybatisplus**  |   数据访问    |    MyBatis-Plus 增强、服务层抽象、自动填充    |
+|     **krismile-boot3-starter-redis**     |   缓存支持    | RedisTemplate、Spring Cache、响应式支持 |
 
 ---
 
