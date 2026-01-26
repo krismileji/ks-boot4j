@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.io.Serializable;
 
@@ -47,7 +48,7 @@ public class RequestInfo implements Serializable {
     /**
      * User-Agent
      */
-    private @NonNull String userAgent;
+    private @Nullable String userAgent;
 
     /**
      * 操作系统

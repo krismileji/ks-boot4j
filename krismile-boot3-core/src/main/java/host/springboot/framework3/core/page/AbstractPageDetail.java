@@ -1,7 +1,7 @@
 package host.springboot.framework3.core.page;
 
 import host.springboot.framework3.core.page.query.PageQuery;
-import host.springboot.framework3.core.response.vo.PageDetailVO;
+import host.springboot.framework3.core.response.vo.PageVO;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * 分页参数抽象类, 定义了默认的分页参数
  *
- * <p>框架默认提供了实现类, 如不满足使用需要可以自行继承该类:
+ * <p>框架默认提供了实现类, 如不满足使用需要可以自行继承该类:</p>
  * <ul>
  *     <li><b>{@link ListPage}</b> - 默认分页对象, 其分页数据为 {@link java.util.List}</li>
  *     <li><b>{@link SetPage}</b> - 默认分页对象, 其分页数据为 {@link java.util.Set}</li>
@@ -114,14 +114,14 @@ public abstract class AbstractPageDetail<E, C extends Collection<E>> implements 
     /**
      * 构造器
      *
-     * @param pageDetailVO 分页详情VO
+     * @param pageVO 分页详情 VO
      * @since 0.1.0
      */
-    protected AbstractPageDetail(PageDetailVO pageDetailVO) {
+    protected AbstractPageDetail(PageVO pageVO) {
         this();
-        this.setPageNo(pageDetailVO.getPageNo());
-        this.setPageSize(pageDetailVO.getPageSize());
-        this.setTotalCount(pageDetailVO.getTotalCount());
+        this.setPageNo(pageVO.getPageNo());
+        this.setPageSize(pageVO.getPageSize());
+        this.setTotalCount(pageVO.getTotalCount());
         this.adjustPageNo();
     }
 

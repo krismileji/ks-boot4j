@@ -9,7 +9,7 @@ import org.jspecify.annotations.NonNull;
 /**
  * 请求信息链式处理
  *
- * <p>该类提供两个方法, 分别在方法执行前和执行后自定义处理逻辑, 可用于日至记录或日至打印等自定义逻辑
+ * <p>该类提供两个方法, 分别在方法执行前和执行后自定义处理逻辑, 可用于日至记录或日至打印等自定义逻辑</p>
  *
  * @author JiYinchuan
  * @see RequestLogAspect

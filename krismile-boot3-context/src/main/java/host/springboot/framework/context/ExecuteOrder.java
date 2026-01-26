@@ -48,7 +48,7 @@ public final class ExecuteOrder {
     /**
      * 过滤器执行顺序
      *
-     * <p><b>Warning:</b> 如果过滤器包装了servlet则必须大于或小于 {@value OrderedFilter#REQUEST_WRAPPER_FILTER_MAX_ORDER},
+     * <p><b>Warning:</b> 如果过滤器包装了servlet则必须小于或等于 {@value OrderedFilter#REQUEST_WRAPPER_FILTER_MAX_ORDER},
      * <a href="https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.embedded-container.servlets-filters-listeners.beans">点击查看官方文档说明</a></p>
      *
      * @author JiYinchuan

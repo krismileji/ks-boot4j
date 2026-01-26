@@ -8,7 +8,7 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.8-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/technologies/)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/)
 
 [快速开始](#-快速开始) · [核心特性](#-核心特性) · [模块说明](#-模块说明) · [文档](#-文档) · [贡献指南](#-贡献)
 
@@ -19,14 +19,14 @@
 ## 📖 简介
 
 **Ks-boot4j** 是一个基于 [Spring Boot 3](https://spring.io/projects/spring-boot) 的快速开发框架，在 Spring Boot
-的基础上只做增强不做改变，专为提升开发效率和系统稳定性而设计。
+的基础上只做增强不做改变，更关注提升开发效率和系统稳定性，用起来尽量「开箱即用」。
 
 ### 💡 设计理念
 
-- **🎯 开发者友好**：遵循"约定优于配置"原则，通过智能自动配置减少开发工作量
-- **🏢 企业级可靠**：提供完善的异常处理、日志记录、性能监控等企业级功能
-- **🔌 高度可扩展**：模块化设计，每个功能模块相对独立，便于选择性集成
-- **🚀 性能优化**：内置多种性能优化策略，包括连接池配置、缓存机制、异步处理等
+- **🎯 开发者友好**：遵循「约定优于配置」原则，通过自动配置减少样板代码
+- **🏢 企业级可靠**：提供异常处理、日志记录、性能监控等企业常用能力
+- **🔌 高度可扩展**：模块化设计，每个功能模块相对独立，可按需接入
+- **🚀 性能优化**：提供连接池、缓存机制、异步处理等常见优化手段
 
 ---
 
@@ -44,13 +44,16 @@
 - ✅ **XSS 防护**：内置 XSS 过滤器，保护应用安全
 - ✅ **参数校验**：集成 AOP 参数校验，支持自定义校验逻辑
 - ✅ **统一响应**：标准化的 API 响应格式
+- ✅ **WebFlux 支持**：完整支持响应式编程模型，提供 WebFlux 专用模块
 
 ### 🎯 现代化技术栈
 
-- **Spring Boot 3.5.8**：基于最新的 Spring Boot 3 版本，充分利用 Jakarta EE 9+ 规范
-- **Java 25**：支持最新的 Java 语言特性
-- **MyBatis-Plus 3.5.14**：强大的 ORM 框架，简化数据库操作
+- **Spring Boot 3.5.8**：基于最新的 Spring Boot 3 版本，兼容 Jakarta EE 9+
+- **Java 21**：支持 Java 21 LTS 版本特性
+- **MyBatis-Plus 3.5.14**：简化数据库访问逻辑
 - **Fastjson2 2.0.60**：高性能 JSON 处理
+- **Redis 集成**：提供基于 Redis 的缓存能力，支持 Spring Cache 及响应式模式
+- **WebFlux 支持**：完整支持响应式 Web 应用开发
 
 ---
 
@@ -60,13 +63,13 @@
 
 |       类型        |  版本   | 最低支持版本 |
 |:---------------:|:-----:|:------:|
-|    **Java**     |  25   |   21   |
+|    **Java**     |  21   |   21   |
 | **Spring Boot** | 3.5.8 | 3.0.13 |
 |    **Maven**    | 3.6+  | 3.6.0  |
 
 ### 方式一：使用 Maven BOM（推荐）
 
-**Step 1**: 在 `pom.xml` 中引入 BOM 依赖管理
+**Step 1**：在 `pom.xml` 中引入 BOM 依赖管理
 
 ```xml
 
@@ -75,7 +78,7 @@
         <dependency>
             <groupId>host.springboot.framework</groupId>
             <artifactId>krismile-boot3-bom</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -83,7 +86,7 @@
 </dependencyManagement>
 ```
 
-**Step 2**: 引入所需模块（无需指定版本）
+**Step 2**：按需引入模块（无需指定版本）
 
 ```xml
 
@@ -109,7 +112,18 @@
 <dependency>
     <groupId>host.springboot.framework</groupId>
     <artifactId>krismile-boot3-autoconfigure</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
+</dependency>
+```
+
+如需使用 Redis 功能，也可以直接引入：
+
+```xml
+
+<dependency>
+    <groupId>host.springboot.framework</groupId>
+    <artifactId>krismile-boot3-starter-redis</artifactId>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -137,7 +151,7 @@ public class Application {
 
 ```java
 import host.springboot.framework3.core.response.R;
-import host.springboot.framework3.core.response.vo.SingleVO;
+import host.springboot.framework3.core.response.vo.VO;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -145,8 +159,8 @@ import org.springframework.web.bind.annotation.*;
 public class HelloController {
 
     @GetMapping("/hello")
-    public SingleVO<String> hello(@RequestParam String name) {
-        return R.okSingle("Hello, " + name + "!");
+    public VO<String> hello(@RequestParam String name) {
+        return R.data("Hello, " + name + "!");
     }
 }
 ```
@@ -168,13 +182,18 @@ public class HelloController {
 
 ## 📦 模块说明
 
-|                   模块                   |    职责    |            主要功能            |
-|:--------------------------------------:|:--------:|:--------------------------:|
-|         **krismile-boot3-bom**         |  依赖版本管理  |      统一管理框架内各模块的版本依赖       |
-|        **krismile-boot3-core**         | 核心工具类和常量 |   常量定义、枚举、异常类、工具类、统一响应封装   |
-|       **krismile-boot3-context**       | 上下文和中间件  |  全局异常处理、AOP 日志、过滤器、类型转换器   |
-|    **krismile-boot3-autoconfigure**    |   自动配置   |       属性配置、条件装配、组件注册       |
-| **krismile-boot3-starter-mybatisplus** |   数据访问   | MyBatis-Plus 增强、服务层抽象、自动填充 |
+|                    模块                    |    职责     |               主要功能               |
+|:----------------------------------------:|:---------:|:--------------------------------:|
+|          **krismile-boot3-bom**          |  依赖版本管理   |         统一管理框架内各模块的版本依赖          |
+|         **krismile-boot3-core**          | 核心工具类和常量  |      常量定义、枚举、异常类、工具类、统一响应封装      |
+|        **krismile-boot3-context**        |  上下文和中间件  | 全局异常处理、AOP 日志、过滤器、类型转换器（MVC 模式）  |
+|    **krismile-boot3-webflux-context**    |  响应式上下文   |    全局异常处理、过滤器（WebFlux 响应式模式）     |
+|     **krismile-boot3-autoconfigure**     | 自动配置（MVC） |          属性配置、条件装配、组件注册          |
+| **krismile-boot3-webflux-autoconfigure** | 自动配置（响应式） |       WebFlux 专用的自动配置和属性管理       |
+|  **krismile-boot3-starter-mybatisplus**  |   数据访问    |    MyBatis-Plus 增强、服务层抽象、自动填充    |
+|     **krismile-boot3-starter-redis**     |   缓存支持    | RedisTemplate、Spring Cache、响应式支持 |
+
+---
 
 ## 📚 文档
 
@@ -204,20 +223,20 @@ public class HelloController {
 
 ## 🤝 贡献
 
-我们欢迎所有形式的贡献！如果你想为项目做出贡献，请遵循以下步骤：
+我们欢迎任何形式的参与与反馈，如果你准备提 PR，推荐按照下面的流程来：
 
 1. **Fork** 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/develop`)
-3. 提交你的更改 (`git commit -m 'Add some develop'`)
-4. 推送到分支 (`git push origin feature/develop`)
-5. 开启一个 **Pull Request**
+2. 创建特性分支（`git checkout -b feature/develop`）
+3. 提交你的更改（`git commit -m 'Add some develop'`）
+4. 推送到远程分支（`git push origin feature/develop`）
+5. 提交 **Pull Request**
 
-### 贡献指南
+### 贡献小提示
 
-- 提交代码前请确保通过所有测试
-- 遵循项目的代码规范
-- 编写清晰的提交信息
-- 为新功能添加相应的文档
+- 提交代码前请确保通过现有测试
+- 保持代码风格与现有项目一致
+- 提交信息尽量精准简洁
+- 新功能配套补充文档或示例
 
 ---
 

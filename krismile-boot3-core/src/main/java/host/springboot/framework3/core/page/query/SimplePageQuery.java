@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 /**
  * 简单分页查询
  *
- * <p>该类为简单分页查询实体, 包含了一个默认 {@code keyword} 字段用于查询参数
+ * <p>该类为简单分页查询实体, 包含了一个默认 {@code keyword} 字段用于查询参数</p>
  *
  * @author JiYinchuan
  */

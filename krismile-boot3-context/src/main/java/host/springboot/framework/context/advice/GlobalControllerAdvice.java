@@ -7,7 +7,7 @@ import host.springboot.framework3.core.exception.ApplicationException;
 import host.springboot.framework3.core.exception.StackTraceException;
 import host.springboot.framework3.core.exception.ThirdPartyException;
 import host.springboot.framework3.core.response.R;
-import host.springboot.framework3.core.response.vo.BaseVO;
+import host.springboot.framework3.core.response.vo.VO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 全局Controller异常处理
+ * 全局 Controller 异常处理
  *
  * @author JiYinchuan
  * @see BaseControllerAdvice
@@ -62,13 +62,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(ApplicationException.class)
-    public BaseVO generalErrorHandle(ApplicationException e, HttpServletRequest request) {
+    public VO<?> generalErrorHandle(ApplicationException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 自定义异常信息 -------------------------------- [Begin]", logTag());
         printStackTraceFormat(request.getRequestURI(), request.getMethod(), e, e.getCause(),
                 "自定义异常信息", clientIp, getRequestInfo(request), null, false);
         log().warn("[{}] -------------------------------- 自定义异常信息 -------------------------------- [ End ]", logTag());
-        return R.base(e.getErrorEnum(), e.getUserTip());
+        return R.fail(e.getErrorEnum(), e.getUserTip());
     }
 
     /**
@@ -80,13 +80,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(StackTraceException.class)
-    public BaseVO stackTracerErrorHandler(StackTraceException e, HttpServletRequest request) {
+    public VO<?> stackTracerErrorHandler(StackTraceException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().error("[{}] -------------------------------- 堆栈异常信息 -------------------------------- [Begin]", logTag());
         log().error("[{}] 堆栈异常信息 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
                 logTag(), request.getRequestURI(), request.getMethod(), clientIp, getRequestInfo(request), e.getLocalizedMessage(), e);
         log().error("[{}] -------------------------------- 堆栈异常信息 -------------------------------- [ End ]", logTag(), e);
-        return R.base(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR, ApplicationException.DEFAULT_ERROR_USER_TIP);
+        return R.fail(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR, ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
     /**
@@ -98,13 +98,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(ThirdPartyException.class)
-    public BaseVO thirdPartyErrorHandler(ThirdPartyException e, HttpServletRequest request) {
+    public VO<?> thirdPartyErrorHandler(ThirdPartyException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().error("[{}] -------------------------------- 第三方异常信息 -------------------------------- [Begin]", logTag());
         log().error("[{}] 第三方异常信息 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorCode: {}, errorMessage: {}]",
                 logTag(), request.getRequestURI(), request.getMethod(), clientIp, getRequestInfo(request), e.getErrorCode(), e.getErrorMessage(), e);
         log().error("[{}] -------------------------------- 第三方异常信息 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR.getValue(),
+        return R.fail(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR.getValue(),
                 e.getLocalizedMessage(), ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
@@ -117,21 +117,21 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(Throwable.class)
-    public BaseVO serverErrorHandler(Throwable e, HttpServletRequest request) {
+    public VO<?> serverErrorHandler(Throwable e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().error("[{}] -------------------------------- 系统异常信息 -------------------------------- [Begin]", logTag());
         log().error("[{}] 系统异常信息 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
                 logTag(), request.getRequestURI(), request.getMethod(), clientIp, getRequestInfo(request), e.getLocalizedMessage(), e);
         log().error("[{}] -------------------------------- 系统异常信息 -------------------------------- [ End ]", logTag(), e);
-        return R.base(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR, ApplicationException.DEFAULT_ERROR_USER_TIP);
+        return R.fail(ErrorCodeEnum.SYSTEM_EXECUTION_ERROR, ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
     // -------------------------------- 请求参数验证 --------------------------------
 
     /**
      * 参数为空全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
-     * <p>捕获来自 {@link org.springframework.web.bind.annotation.RequestParam}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
+     * <p>捕获来自 {@link org.springframework.web.bind.annotation.RequestParam}</p>
      *
      * @param e       {@link MissingServletRequestParameterException}
      * @param request {@link HttpServletRequest}
@@ -139,13 +139,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public BaseVO validationExceptionHandler(MissingServletRequestParameterException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(MissingServletRequestParameterException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 参数为空 -------------------------------- [Begin]", logTag());
         log().warn("[{}] 参数为空 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
                 logTag(), request.getRequestURI(), request.getMethod(), clientIp, getRequestInfo(request), e.getLocalizedMessage());
         log().warn("[{}] -------------------------------- 参数为空 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.PARAMETER_EMPTY.getValue(),
+        return R.fail(ErrorCodeEnum.PARAMETER_EMPTY.getValue(),
                 e.getLocalizedMessage(), ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
@@ -158,20 +158,20 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public BaseVO validationExceptionHandler(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 参数转换异常 -------------------------------- [Begin]", logTag());
         String errorMessage = super.printStackTraceFormat(request.getRequestURI(), request.getMethod(), e, e.getCause(),
                 "参数转换异常", clientIp, getRequestInfo(request), e.getLocalizedMessage(), false);
         log().warn("[{}] -------------------------------- 参数转换异常 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.PARAMETER_FORMAT_NOT_MATCH.getValue(),
+        return R.fail(ErrorCodeEnum.PARAMETER_FORMAT_NOT_MATCH.getValue(),
                 errorMessage, ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
     /**
      * 验证异常全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
-     * <p>捕获来自 {@link jakarta.validation.constraints}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
+     * <p>捕获来自 {@link jakarta.validation.constraints}</p>
      *
      * @param e       {@link ValidationException}
      * @param request {@link HttpServletRequest}
@@ -179,7 +179,7 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(ValidationException.class)
-    public BaseVO validationExceptionHandler(ValidationException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(ValidationException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 验证异常 -------------------------------- [Begin]", logTag());
         log().warn("[{}] 验证异常 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
@@ -196,24 +196,24 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
             userTipMessages.add(e.getLocalizedMessage());
         }
         log().warn("[{}] -------------------------------- 验证异常 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
+        return R.fail(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
                 e.getLocalizedMessage(), String.join(",", userTipMessages));
     }
 
     /**
      * 请求体异常全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b>
-     * <p>Also throw to {@link InvalidFormatException}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b></p>
+     * <p>Also throw to {@link InvalidFormatException}</p>
      *
      * @param e       {@link HttpMessageNotReadableException}
      * @param request {@link HttpServletRequest}
      * @return 结果响应
      * @see com.fasterxml.jackson.databind.DeserializationContext#weirdStringException(String, Class, String)
-     * <p>Enum deserialize failed exception is unsolved
+     * <p>Enum deserialize failed exception is unsolved</p>
      * @since 0.1.0
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public BaseVO validationExceptionHandler(HttpMessageNotReadableException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(HttpMessageNotReadableException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 请求体异常 -------------------------------- [Begin]", logTag());
         String errorMessage = super.printStackTraceFormat(request.getRequestURI(), request.getMethod(), e, e.getCause(),
@@ -221,13 +221,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
         log().warn("[{}] 请求体异常 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
                 logTag(), request.getRequestURI(), request.getMethod(), clientIp, getRequestInfo(request), errorMessage);
         log().warn("[{}] -------------------------------- 请求体异常 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.PARAMETER_FORMAT_NOT_MATCH, ApplicationException.DEFAULT_ERROR_USER_TIP);
+        return R.fail(ErrorCodeEnum.PARAMETER_FORMAT_NOT_MATCH, ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
     /**
      * 绑定异常全局捕获
      *
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b>
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestParam}</b></p>
      *
      * @param e       {@link BindException}
      * @param request {@link HttpServletRequest}
@@ -235,21 +235,21 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(BindException.class)
-    public BaseVO validationExceptionHandler(BindException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(BindException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 绑定异常 -------------------------------- [Begin]", logTag());
         List<String> errorMessages = parseAndPrintBindErrorMessage(e, request.getRequestURI(), request.getMethod(),
                 "绑定异常", clientIp, getRequestInfo(request));
         log().warn("[{}] -------------------------------- 绑定异常 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
+        return R.fail(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
                 String.join(", ", errorMessages),
                 ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 
     /**
      * 请求体验证全局捕获
-     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b>
-     * <p>捕获来自 {@link jakarta.validation.constraints}
+     * <p>RequestType = <b>{@link org.springframework.web.bind.annotation.RequestBody}</b></p>
+     * <p>捕获来自 {@link jakarta.validation.constraints}</p>
      *
      * @param e       {@link MethodArgumentNotValidException}
      * @param request {@link HttpServletRequest}
@@ -257,13 +257,13 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public BaseVO validationExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(MethodArgumentNotValidException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 请求体验证异常 -------------------------------- [Begin]", logTag());
         List<String> errorMessages = parseAndPrintBindErrorMessage(e, request.getRequestURI(), request.getMethod(),
                 "请求体验证异常", clientIp, getRequestInfo(request));
         log().warn("[{}] -------------------------------- 请求体验证异常 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
+        return R.fail(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
                 String.join(", ", errorMessages),
                 ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
@@ -277,7 +277,7 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
      * @since 0.1.0
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public BaseVO validationExceptionHandler(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
+    public VO<?> validationExceptionHandler(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
         String clientIp = IpUtils.getIpv4Address(request);
         log().warn("[{}] -------------------------------- 方法不被允许 -------------------------------- [Begin]", logTag());
         log().warn("[{}] 方法不被允许 [requestUri: {}, requestMethod: {}, clientIp: {}, requestInfo: {}, errorMessage: {}]",
@@ -285,7 +285,7 @@ public class GlobalControllerAdvice extends BaseControllerAdvice {
         super.printStackTraceFormat(request.getRequestURI(), request.getMethod(), e, e.getCause(),
                 "方法不被允许", clientIp, getRequestInfo(request), null, false);
         log().warn("[{}] -------------------------------- 方法不被允许 -------------------------------- [ End ]", logTag());
-        return R.base(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
+        return R.fail(ErrorCodeEnum.INVALID_USER_INPUT.getValue(),
                 e.getLocalizedMessage(), ApplicationException.DEFAULT_ERROR_USER_TIP);
     }
 

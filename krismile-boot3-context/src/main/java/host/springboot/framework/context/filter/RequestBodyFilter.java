@@ -39,7 +39,7 @@ public record RequestBodyFilter(Predicate<HttpServletRequest> executePredicate) 
     /**
      * 执行顺序
      *
-     * <p>此处 {@link ExecuteOrder.Filter#REQUEST_BODY_WRAPPER} 必须为负数, 因为必须小于 {@value REQUEST_WRAPPER_FILTER_MAX_ORDER} 值
+     * <p>此处 {@link ExecuteOrder.Filter#REQUEST_BODY_WRAPPER} 必须为负数, 因为必须小于 {@value REQUEST_WRAPPER_FILTER_MAX_ORDER} 值</p>
      */
     public static final int EXECUTE_ORDER = REQUEST_WRAPPER_FILTER_MAX_ORDER + ExecuteOrder.Filter.REQUEST_BODY_WRAPPER;
 
