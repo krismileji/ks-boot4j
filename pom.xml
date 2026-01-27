@@ -21,10 +21,8 @@
 
     <licenses>
         <license>
-            <name>Apache 2</name>
+            <name>The Apache Software License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
 
@@ -40,6 +38,17 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/krismileji/ks-boot4j.git</connection>
+        <developerConnection>scm:git:ssh://github.com:krismileji/ks-boot4j.git</developerConnection>
+        <url>https://github.com/krismileji/ks-boot4j</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issue Management</system>
+        <url>https://github.com/krismileji/ks-boot4j/issues</url>
+    </issueManagement>
 
     <modules>
         <module>krismile-boot3-core</module>
@@ -65,6 +74,8 @@
         <jspecify.version>1.0.0</jspecify.version>
         <!-- swagger -->
         <swagger-annotations.version>2.2.40</swagger-annotations.version>
+        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+        <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -154,6 +165,30 @@
                         <delimiter>@</delimiter>
                     </delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <deploymentName>${project.artifactId}-${project.version}</deploymentName>
+                    <ignorePublishedComponents>true</ignorePublishedComponents>
                 </configuration>
             </plugin>
         </plugins>
