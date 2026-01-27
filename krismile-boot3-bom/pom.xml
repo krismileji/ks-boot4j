@@ -9,6 +9,7 @@
         <version>0.2.0</version>
     </parent>
 
+    <name>krismile-boot3-bom</name>
     <artifactId>krismile-boot3-bom</artifactId>
     <packaging>pom</packaging>
 
@@ -17,10 +18,8 @@
 
     <licenses>
         <license>
-            <name>Apache 2</name>
+            <name>The Apache Software License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
 
@@ -36,6 +35,17 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/krismileji/ks-boot4j.git</connection>
+        <developerConnection>scm:git:ssh://github.com:krismileji/ks-boot4j.git</developerConnection>
+        <url>https://github.com/krismileji/ks-boot4j</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issue Management</system>
+        <url>https://github.com/krismileji/ks-boot4j/issues</url>
+    </issueManagement>
 
     <properties>
         <java.version>21</java.version>
